@@ -1,0 +1,38 @@
+.app-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-container {
+  margin: 16px 0;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.form-input {
+  padding: 8px;
+  border-radius: 4px;
+}
+
+button {
+  padding: 8px;
+}
+
+@media (max-width: 600px) {
+  .form-container {
+    width: 100%;
+  }
+
+  .form-input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+  
+}
