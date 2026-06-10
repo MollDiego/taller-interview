@@ -14,27 +14,32 @@ app.get('/', (req, res) => {
 
 app.post('/transaction', (req, res) => {
   const { amount, description } = req.body;
+  
+  if (!amount || !description) {
+    return res.status(400).json({ error: 'amount and description are required' });
+  }
+
   const newTransaction = {
     id: uuidv4(),
     amount,
     description
   }
-    
-    if (!amount || !description) {
-        return res.status(400).json({ error: 'amount and description are required' });
-    }
 
-    transaction.push(newTransaction);
-    res.status(201).json({
-        message: 'Transaction created successfully',
-        data: newTransaction
-    });
+  transaction.push(newTransaction);
+  res.status(201).json({
+      message: 'Transaction created successfully',
+      data: newTransaction
+  });
 });
 
 app.get('/transaction', (req, res) => {
     res.json(transaction);
 });
 
-app.listen(port, () => {
-  console.log(`Transaction app listening on port ${port}`)
-})
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Transaction app listening on port ${port}`);
+  });
+}
+
+module.exports = app;
